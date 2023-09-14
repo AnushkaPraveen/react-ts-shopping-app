@@ -11,6 +11,7 @@
 }
 .navBar{
     background-color:#F0F2F3;
+    box-shadow: 1px 1px 10px 1px grey;
 }
 .navMainTitle{
     font-size: 26px;
