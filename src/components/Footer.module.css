@@ -1,0 +1,21 @@
+@import '../util/colors.css';
+
+.logoText {
+    font-size: 26px;
+
+}
+
+.buttonColor {
+    background-color: var(--mainThemeColor);
+    
+}
+.bottomBar{
+    background-color: #FFFFFF;;
+    color:#9A9CAA;
+    height: 70px;
+    text-align: center;
+    border: 2px solid #E1E3E5; 
+}
+.bottomBarText{
+    margin-top: 20px;
+}
