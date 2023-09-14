@@ -1,0 +1,48 @@
+@import '../util/colors.css';
+
+.topBar{
+    background-color: #272343;
+    color:#FFFFFF;
+    height: 40px;
+}
+.topBarText{
+    margin-left: 170px;
+    padding-top: 8px;
+}
+.navBar{
+    background-color:#F0F2F3;
+}
+.navMainTitle{
+    font-size: 26px;
+    margin-top: 10px;
+}
+
+.buttonColor{
+    background-color: var(--mainThemeColor);;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .topBarText{ margin-left: 20px;} 
+  }
+  
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+    .topBarText{ margin-left: 50px;} 
+  }
+  
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+    .topBarText{ margin-left: 50px;} 
+  } 
+  
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+    .topBarText{ margin-left: 170px;} 
+    
+  } 
+  
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1200px) {
+    
+  }
