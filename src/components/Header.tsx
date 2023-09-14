@@ -9,7 +9,6 @@ const Header: React.FC = () => {
                 </div>
             </div>
             <nav className={`${classes.navBar} d-flex justify-content-evenly align-items-center navbar navbar-expand-lg`}>
-
                 <p className={classes.navMainTitle}><i className="bi bi-shop text-info me-2"></i>Comforty</p>
                 <div className='d-flex'>
                     <div className="dropdown me-2">
@@ -27,7 +26,6 @@ const Header: React.FC = () => {
                         <span className="input-group-append">
                             <div className="input-group-text bg-white"><i className="bi-search"></i></div>
                         </span>
-
                     </div>
                     <button className={`${classes.buttonColor} btn text-white`} type="submit">Search</button>
                 </div>
@@ -40,11 +38,7 @@ const Header: React.FC = () => {
                         <i className="bi bi-person fs-5"></i>
                     </button>
                 </div>
-
-
             </nav>
-
-
         </>
     )
 }
