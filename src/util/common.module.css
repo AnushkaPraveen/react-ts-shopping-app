@@ -1,0 +1,7 @@
+@import './colors.css';
+
+.buttonColor{
+    background-color: var(--mainThemeColor);
+    color: white;
+    box-shadow: 1px 1px 10px 1px grey;
+}
