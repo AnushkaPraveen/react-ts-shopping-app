@@ -2,6 +2,7 @@
 import Footer from './components/Footer'
 import Header from './components/Header'
 import Home from './components/Home'
+import Profile from './components/Profile'
 import SignIn from './components/SignIn'
 
 function App() {
@@ -10,7 +11,8 @@ function App() {
     <>
      <Header/>
      {/* <Home/> */}
-     <SignIn/>
+    {/*  <SignIn/> */}
+    <Profile/>
      <Footer/>
     </>
   )
