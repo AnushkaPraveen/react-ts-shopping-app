@@ -27,7 +27,6 @@ const CartItem = () => {
                     <p className='mb-1'>$65.00</p>
                     <p className={classes.eachItemPrice}>$32.00 each</p>
                 </div>
-
             </div>
         </div>
     )
