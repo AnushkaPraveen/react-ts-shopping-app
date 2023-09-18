@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Profile from './components/Profile';
 import SignIn from './components/SignIn';
 import Cart from './components/Cart';
+import ProductDetails from './components/ProductDetails';
 
 function App() {
 
@@ -15,7 +16,8 @@ function App() {
      {/* <Home/> */}
     {/*  <SignIn/> */}
     {/* <Profile/> */}
-    <Cart/>
+   {/*  <Cart/> */}
+   <ProductDetails/>
      <Footer/>
     </>
   )
