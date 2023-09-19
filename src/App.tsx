@@ -1,12 +1,12 @@
 //import './App.css'
-import CartItem from './components/CartItem';
+/* import CartItem from './components/modules/CartItem'; */
 import Footer from './components/Footer';
 import Header from './components/Header';
-import Home from './components/Home';
-import Profile from './components/Profile';
+/* import Home from './components/Home';
+import Profile from './pages/Profile';
 import SignIn from './components/SignIn';
-import Cart from './components/Cart';
-import ProductDetails from './components/ProductDetails';
+import Cart from './pages/Cart'; */
+import ProductDetails from './pages/ProductDetails';
 
 function App() {
 
