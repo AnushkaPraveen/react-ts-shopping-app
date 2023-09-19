@@ -1,0 +1,61 @@
+@import '../util/colors.css';
+
+.mainImage {
+    width: 400px;
+    border-radius: 5px;
+}
+
+.thumbnailImage {
+    width: 100px;
+    border: 2px solid rgb(201, 8, 8);
+    padding: 2px
+}
+.activeThumbnail {
+    composes: thumbnailImage;
+    border: 2px solid rgb(24, 236, 226);
+   
+}
+
+.updownbtn {
+    border: 1px solid rgb(182, 179, 179);
+    width: 30px;
+    background-color: white;
+    border-radius: 2px;
+}
+
+.buyNowbtn {
+    background-color: var(--mainThemeColor);
+    color: white;
+
+}
+
+.buyNowbtn:hover {
+    border-color: var(--mainThemeColor);
+    color: var(--mainThemeColor);
+}
+
+.addCartbtn {
+    border-color: var(--mainThemeColor);
+    color: var(--mainThemeColor);
+
+
+}
+
+.addCartbtn:hover {
+    background-color: var(--mainThemeColor);
+    color: white;
+}
+
+.displayCount {
+    height: 28px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-top: 1px solid rgb(182, 179, 179);
+    /* Add a solid border on the top */
+    border-bottom: 1px solid rgb(182, 179, 179);
+    /* Add a solid border on the bottom */
+    border-left: none;
+    /* No border on the left */
+    border-right: none;
+    /* No border on the right */
+}
