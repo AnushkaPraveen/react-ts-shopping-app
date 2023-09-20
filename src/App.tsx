@@ -1,11 +1,12 @@
 //import './App.css'
-import CartItem from './components/CartItem';
+/* import CartItem from './components/modules/CartItem'; */
 import Footer from './components/Footer';
 import Header from './components/Header';
-import Home from './components/Home';
-import Profile from './components/Profile';
+/* import Home from './components/Home';
+import ProfileView from './pages/ProfileView';
 import SignIn from './components/SignIn';
-import Cart from './components/Cart';
+import Cart from './pages/Cart'; */
+import ProductDetailsView from './pages/ProductDetailsView';
 
 function App() {
 
@@ -14,8 +15,9 @@ function App() {
      <Header/>
      {/* <Home/> */}
     {/*  <SignIn/> */}
-    {/* <Profile/> */}
-    <Cart/>
+    {/* <ProfileView/> */}
+   {/*  <Cart/> */}
+   <ProductDetailsView/>
      <Footer/>
     </>
   )
