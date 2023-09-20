@@ -3,10 +3,10 @@
 import Footer from './components/Footer';
 import Header from './components/Header';
 /* import Home from './components/Home';
-import Profile from './pages/Profile';
+import ProfileView from './pages/ProfileView';
 import SignIn from './components/SignIn';
 import Cart from './pages/Cart'; */
-import ProductDetails from './pages/ProductDetails';
+import ProductDetailsView from './pages/ProductDetailsView';
 
 function App() {
 
@@ -15,9 +15,9 @@ function App() {
      <Header/>
      {/* <Home/> */}
     {/*  <SignIn/> */}
-    {/* <Profile/> */}
+    {/* <ProfileView/> */}
    {/*  <Cart/> */}
-   <ProductDetails/>
+   <ProductDetailsView/>
      <Footer/>
     </>
   )
