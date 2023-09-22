@@ -1,4 +1,4 @@
-import { useAppSelector, useAppDispatch } from '../../store//hooks';
+import { useAppSelector, useAppDispatch } from '../../../store/hooks';
 const Dropdown = () => {
     const categories= useAppSelector((state) => state.product.categories);
     return (

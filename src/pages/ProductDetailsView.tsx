@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Classes from './ProductDetailsView.module.css';
-import ImageSlider from '../components/modules/ImageSlider';
-import ProductDetails from '../components/modules/ProductDetails';
-import Item from '../components/modules/Item';
+import ImageSlider from '../components/modules/product/ImageSlider';
+import ProductDetails from '../components/modules/product/ProductDetails';
+import Item from '../components/modules/product/Item';
 
 const ProductDetailsView = () => {
     const arr = [1, 2, 3, 4,];
