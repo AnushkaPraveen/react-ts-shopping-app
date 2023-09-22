@@ -1,16 +1,26 @@
-import Item from "../components/modules/Item";
+import Item from "../components/modules/product/Item";
+import { useAppSelector, useAppDispatch } from '../store/hooks';
+
+import { fetchProducts } from '../store/actions/productAction';
+
 const Home = () => {
-    const arr = [1, 2, 3, 4, 5, 6, 7, 8];
+    const dispatch = useAppDispatch();
+    const products = useAppSelector((state) => state.product.products);
+
+    const handleApi = () => {
+        dispatch(fetchProducts());
+    }
     return (
         <>
+            <button onClick={handleApi}>check</button>
             <div className="container">
-                <div className="row">
-                    {arr.map((num, index) => (
+                {products?.products ? <div className="row">
+                    {products?.products.map((item, index) => (
                         <div className="col-lg-3 col-md-6 col-sm-12 col-6" key={index}>
-                            <Item />
+                            <Item product={item} />
                         </div>
                     ))}
-                </div>
+                </div> : <p>No any Data to display</p>}
             </div>
 
 
