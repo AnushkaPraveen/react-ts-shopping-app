@@ -22,7 +22,7 @@ const ProductDetailsView = () => {
                 <div className="row">
                     {arr.map((num, index) => (
                         <div key={index} className="col-lg-3 col-md-6 col-sm-12 col-12">
-                            <Item />
+                           {/*  <Item /> */}
                         </div>
                     ))}
                 </div>
