@@ -2,7 +2,7 @@ import classes from './Footer.module.css';
 
 const Footer = () => {
     return (
-        <>
+        <><div className={classes.footer} >
             <div className="row justify-content-evenly">
                 <div className="col-lg-3 col-md-3 col-sm-4 col-10 mx-auto  order-lg-first order-md-first order-sm-last order-last">
                     <p className={classes.logoText}><i className="bi bi-shop text-info me-2"></i>Comforty</p>
@@ -28,6 +28,7 @@ const Footer = () => {
             <div className={classes.bottomBar}>
                 <p className={classes.bottomBarText}>@ 2021 - Blogy - Designed & Develop by NMG</p>
 
+            </div>
             </div>
         </>
     )
