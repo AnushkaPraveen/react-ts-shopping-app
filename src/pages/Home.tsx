@@ -1,20 +1,38 @@
 import { useEffect } from "react";
 import Item from "../components/modules/product/Item";
 import { useAppSelector, useAppDispatch } from '../store/hooks';
-import { fetchProducts } from '../store/actions/productAction';
+import { fetchProducts, fetchProductCategory } from '../store/actions/productAction';
+import { commonActions } from '../store/slices/commonSlice';
+import Loader from "../components/modules/common/Loader";
 
 const Home = () => {
     const dispatch = useAppDispatch();
     const products = useAppSelector((state) => state.product.products);
+    const loader = useAppSelector((state) => state.common.loadingState);
+    console.log("staet", loader);
+
+    const handleApi = async () => {
+        dispatch(commonActions.setLoader(true));
+        await dispatch(fetchProducts());
+        dispatch(commonActions.setLoader(false));
+    }
+    const handleFetchProductCategory = async () => {
+        await dispatch(fetchProductCategory());
+    }
 
     useEffect(() => {
         handleApi();
     }, [])
 
+    useEffect(() => {
+        handleFetchProductCategory();
+    }, [])
 
 
-    const handleApi = () => {
-        dispatch(fetchProducts());
+
+
+    if (loader) {
+        return <Loader />
     }
 
     return (
