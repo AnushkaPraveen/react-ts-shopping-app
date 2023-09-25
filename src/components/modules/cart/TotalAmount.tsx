@@ -1,5 +1,5 @@
 import classes from './TotalAmount.module.css';
-import CommonClasses from '../util/common.module.css'
+import CommonClasses from '../../../util/common.module.css'
 const TotalAmount = () => {
     return (
         <div className={classes.amountContainer}>
