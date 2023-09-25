@@ -1,18 +1,24 @@
+import { useEffect } from "react";
 import Item from "../components/modules/product/Item";
 import { useAppSelector, useAppDispatch } from '../store/hooks';
-
 import { fetchProducts } from '../store/actions/productAction';
 
 const Home = () => {
     const dispatch = useAppDispatch();
     const products = useAppSelector((state) => state.product.products);
 
+    useEffect(() => {
+        handleApi();
+    }, [])
+
+
+
     const handleApi = () => {
         dispatch(fetchProducts());
     }
+
     return (
         <>
-            <button onClick={handleApi}>check</button>
             <div className="container">
                 {products?.products ? <div className="row">
                     {products?.products.map((item, index) => (
@@ -20,10 +26,10 @@ const Home = () => {
                             <Item product={item} />
                         </div>
                     ))}
-                </div> : <p>No any Data to display</p>}
+                </div> : <div className="d-flex justify-content-center my-5">
+                    <h3>No Available Any Products</h3>
+                </div>}
             </div>
-
-
         </>
     )
 }
