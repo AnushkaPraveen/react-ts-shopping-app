@@ -1,5 +1,13 @@
 @import '../util/colors.css';
 
+.footer {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    right:0;
+    
+}
+
 .logoText {
     font-size: 26px;
 
@@ -7,15 +15,18 @@
 
 .buttonColor {
     background-color: var(--mainThemeColor);
-    
+
 }
-.bottomBar{
-    background-color: #FFFFFF;;
-    color:#9A9CAA;
+
+.bottomBar {
+    background-color: #FFFFFF;
+    ;
+    color: #9A9CAA;
     height: 70px;
     text-align: center;
-    border: 2px solid #E1E3E5; 
+    border: 2px solid #E1E3E5;
 }
-.bottomBarText{
+
+.bottomBarText {
     margin-top: 20px;
 }
