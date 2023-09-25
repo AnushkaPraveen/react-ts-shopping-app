@@ -1,4 +1,5 @@
 import classes from './Header.module.css';
+import Dropdown from './modules/common/Dropdown';
 const Header: React.FC = () => {
 
     return (
@@ -12,14 +13,7 @@ const Header: React.FC = () => {
                 <p className={classes.navMainTitle}><i className="bi bi-shop text-info me-2"></i>Comforty</p>
                 <div className='d-flex'>
                     <div className="dropdown me-2">
-                        <button className="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            All Categories
-                        </button>
-                        <ul className="dropdown-menu">
-                            <li><a className="dropdown-item" href="#">Action</a></li>
-                            <li><a className="dropdown-item" href="#">Another action</a></li>
-                            <li><a className="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
+                        <Dropdown/>
                     </div>
                     <div className="input-group me-2">
                         <input className="form-control  border-right-0 border" type="search" placeholder="Search" id="example-search-input" />

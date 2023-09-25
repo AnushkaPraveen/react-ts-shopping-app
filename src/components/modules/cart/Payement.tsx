@@ -1,5 +1,5 @@
 import Classes from './Payment.module.css';
-import CommonClasses from '../util/common.module.css';
+import CommonClasses from '../../../util/common.module.css';
 
 const Payment = () => {
     return (

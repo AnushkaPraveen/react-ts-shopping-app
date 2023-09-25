@@ -1,6 +1,6 @@
-import CartItem from "../components/modules/CartItem";
-import TotalAmount from "../components/modules/TotalAmount";
-import Payment from "../components/modules/Payement";
+import CartItem from "../components/modules/cart/CartItem";
+import TotalAmount from "../components/modules/cart/TotalAmount";
+import Payment from "../components/modules/cart/Payement";
 import Classes from './Cart.module.css';
 
 const Cart = () => {

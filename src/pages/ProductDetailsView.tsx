@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Classes from './ProductDetailsView.module.css';
-import ImageSlider from '../components/modules/ImageSlider';
-import ProductDetails from '../components/modules/ProductDetails';
-import Item from '../components/modules/Item';
+import ImageSlider from '../components/modules/product/ImageSlider';
+import ProductDetails from '../components/modules/product/ProductDetails';
+import Item from '../components/modules/product/Item';
 
 const ProductDetailsView = () => {
     const arr = [1, 2, 3, 4,];
@@ -22,7 +22,7 @@ const ProductDetailsView = () => {
                 <div className="row">
                     {arr.map((num, index) => (
                         <div key={index} className="col-lg-3 col-md-6 col-sm-12 col-12">
-                            <Item />
+                           {/*  <Item /> */}
                         </div>
                     ))}
                 </div>

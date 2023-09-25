@@ -1,4 +1,4 @@
-@import '../../util/colors.css';
+@import '../../../util/colors.css';
 
 .productItemImage{
     width: 312px;
@@ -14,9 +14,6 @@
     color: white;
     box-shadow: 1px 1px 10px 1px grey;
    
-}
-.productName{
-
 }
 .productPrice{
     font-weight: bold;
