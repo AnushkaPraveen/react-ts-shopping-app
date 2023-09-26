@@ -7,7 +7,6 @@ type ComponentProps = {
 }
 
 const Item: React.FC<ComponentProps> = ({ product }) => {
-    console.log(product);
 
     return (
         <>
