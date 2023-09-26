@@ -4,7 +4,7 @@ const SignIn = () => {
     return (
         <>
             <div className="d-flex justifiy-content-center">
-                <div className="card w-50 p-5 shadow-lg p-3 mb-5 bg-white rounded">
+                <div className="card w-100 p-5 shadow-lg mb-5 bg-white rounded mt-5">
                     <p className="text-center h2">Sign In</p>
                     <input type="email" className="form-control mb-3" id="exampleFormControlInput1" placeholder="Email" />
                     <input type="password" id="inputPassword5" className="form-control mb-3" aria-describedby="passwordHelpBlock" placeholder="Password" />
