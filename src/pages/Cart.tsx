@@ -2,17 +2,20 @@ import CartItem from "../components/modules/cart/CartItem";
 import TotalAmount from "../components/modules/cart/TotalAmount";
 import Payment from "../components/modules/cart/Payement";
 import Classes from './Cart.module.css';
+import { useAppSelector, useAppDispatch } from '../store/hooks';
 
 const Cart = () => {
+    const dispatch = useAppDispatch();
+    const cartProducts = useAppSelector((state) => state.cart.productsCart);
     const arr = [1, 2, 3];
     return (
         <>
             <div className="container mt-5 mb-5">
                 <div className="row">
                     <div className="col-1g-9 col-md-9 col-sm-12 col-9">
-                        {arr.map((num, index) => (
+                        {cartProducts.map((item, index) => (
                             <div className="col justify-content-center" key={index}>
-                                <CartItem />
+                                <CartItem cartItem={item}/>
                             </div>
                         ))}
                         <div className="container">
