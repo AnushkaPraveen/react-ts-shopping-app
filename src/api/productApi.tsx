@@ -20,10 +20,10 @@ const requests = {
 };
 
 export const Product = {
-  getProducts: (): Promise<ProductApiResponse> => requests.get('?limit=12&skip=0'),
+  getProducts: (): Promise<ProductApiResponse> => requests.get(`?limit=100&skip=0`),
   getCategory: (): Promise<ProductCategoryType> => requests.get('categories'),
-  getProductListByCategory: (): Promise<ProductType> => requests.get('category/smartphones?limit=10&skip=0'),
-  getSearchProduct: (): Promise<ProductType> => requests.get('https://dummyjson.com/products/search?q=phone'),
+  getProductListByCategory: (category:string): Promise<ProductApiResponse> => requests.get(`category/${category}`),
+  getSearchProduct: (searchTerm:string): Promise<ProductApiResponse> => requests.get(`https://dummyjson.com/products/search?q=${searchTerm}`),
   createPost: (post: ProductType): Promise<ProductType> =>
     requests.post('posts', post),
   updatePost: (post: ProductType, id: number): Promise<ProductType> =>
