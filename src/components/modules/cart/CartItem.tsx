@@ -1,6 +1,11 @@
 import classes from './CartItem.module.css';
+import { ProductType } from "../product/productTypes";
 
-const CartItem = () => {
+type ComponentProps = {
+    cartItem: ProductType;
+}
+
+const CartItem : React.FC<ComponentProps>= ({cartItem}) => {
     return (
         <div className='row my-2'>
             <div className='col d-flex justify-content-end align-items-center'>
@@ -9,7 +14,7 @@ const CartItem = () => {
             <div className='col d-flex justify-content-start '>
                 <div className='row'>
                     <div className='col'>
-                        <p className='mb-0'>Item Name</p>
+                        <p className='mb-0'>{cartItem.title}</p>
                         <div className='d-flex align-items-center'>
                             <p>qty</p>
                             <select className="form-select form-select-sm ms-2">
@@ -25,7 +30,7 @@ const CartItem = () => {
             <div className='col d-flex justify-content-center align-items-center'>
                 <div>
                     <p className='mb-1'>$65.00</p>
-                    <p className={classes.eachItemPrice}>$32.00 each</p>
+                    <p className={classes.eachItemPrice}>${cartItem.price} each</p>
                 </div>
             </div>
         </div>
