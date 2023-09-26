@@ -28,7 +28,7 @@
 }
 
 .displayCount {
-    height: 28px;
+    height: 29px;
     padding-left: 10px;
     padding-right: 10px;
     border-top: 1px solid rgb(182, 179, 179);
@@ -36,9 +36,10 @@
     border-left: none;
     border-right: none;
 }
-.productPrePrice{
+
+.productPrePrice {
     text-decoration: line-through;
-    color:#9A9CAA ;
+    color: #9A9CAA;
     font-size: 16px;
     margin-left: 5px;
 }
