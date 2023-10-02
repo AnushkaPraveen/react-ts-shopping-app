@@ -10,14 +10,14 @@
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
     .amountContainer {
-        margin-right: 83px;
+        margin-right: 80px;
     }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
     .amountContainer {
-        margin-right: 50px;
+        margin-right: 40px;
     }
 }
 
@@ -31,6 +31,6 @@
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1600px) {
     .amountContainer {
-        margin-right: 850px;
+        margin-right: 108px;
     }
 }
