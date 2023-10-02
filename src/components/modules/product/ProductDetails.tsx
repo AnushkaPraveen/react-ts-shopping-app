@@ -1,14 +1,23 @@
+import { Link } from "react-router-dom";
 import Classes from './ProductDetails.module.css';
 import { ProductType } from "./productTypes";
 import { calculateDiscount } from "../../../functions/index";
+import { useAppSelector, useAppDispatch } from '../../../store/hooks';
+import { cartActions } from '../../../store/slices/cartSlice';
 
 type ComponentProps = {
-    productDetails: ProductType | undefined;
+    productDetails: ProductType ;
 }
 
 
 const ProductDetails: React.FC<ComponentProps> = ({ productDetails }) => {
+    const dispatch = useAppDispatch();
     const discountPrice = calculateDiscount(productDetails?.price, productDetails?.discountPercentage);
+
+    const handleCart = () => {
+        dispatch(cartActions.addItemToCart(productDetails));
+    }
+
 
     return (
         <>
@@ -27,8 +36,11 @@ const ProductDetails: React.FC<ComponentProps> = ({ productDetails }) => {
                     <button className={`${Classes.updownbtn}`}>-</button>
                     <span className={Classes.displayCount}>1</span>
                     <button className={`${Classes.updownbtn} me-5`}>+</button>
-                    <button className={`${Classes.buyNowbtn} btn me-4`}>Buy Now</button>
-                    <button className={`${Classes.addCartbtn} btn`}>Add to Cart</button>
+                    <Link to='/cart'>
+                    <button className={`${Classes.buyNowbtn} btn me-4`} onClick={handleCart}>Buy Now</button>
+                    </Link>
+                    
+                    <button className={`${Classes.addCartbtn} btn`} onClick={handleCart}>Add to Cart</button>
                 </div>
             </div>
         </>
