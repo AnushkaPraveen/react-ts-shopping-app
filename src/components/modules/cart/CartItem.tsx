@@ -3,13 +3,15 @@ import { ProductType } from "../product/productTypes";
 
 type ComponentProps = {
     cartItem: ProductType;
+    removeItemFromCart:(itemId:number)=>void;
 }
 
-const CartItem : React.FC<ComponentProps>= ({cartItem}) => {
+const CartItem: React.FC<ComponentProps> = ({ cartItem,removeItemFromCart }) => {
+    const priceOfItems = cartItem.price * cartItem.cartQuantity;
     return (
         <div className='row my-2'>
             <div className='col d-flex justify-content-end align-items-center'>
-                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZHVjdHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" className={classes.productImage} />
+                <img src={cartItem.thumbnail} className={classes.productImage} />
             </div>
             <div className='col d-flex justify-content-start '>
                 <div className='row'>
@@ -18,20 +20,26 @@ const CartItem : React.FC<ComponentProps>= ({cartItem}) => {
                         <div className='d-flex align-items-center'>
                             <p>qty</p>
                             <select className="form-select form-select-sm ms-2">
-                                <option selected value="1">1</option>
+                                <option selected value={cartItem.cartQuantity}>{cartItem.cartQuantity}</option>
+                                <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
                             </select>
+                            <i className=" ms-4 bi bi-trash" onClick={()=>removeItemFromCart(cartItem.id)}></i>
                         </div>
                     </div>
+                    
                 </div>
             </div>
             <div className='col d-flex justify-content-center align-items-center'>
                 <div>
-                    <p className='mb-1'>$65.00</p>
-                    <p className={classes.eachItemPrice}>${cartItem.price} each</p>
+                    <p className='mb-1'>${priceOfItems.toFixed(2)}</p>
+                    {cartItem.cartQuantity > 1 && <p className={classes.eachItemPrice}>${cartItem.price.toFixed(2)} each</p>}
                 </div>
+                
             </div>
         </div>
     )
