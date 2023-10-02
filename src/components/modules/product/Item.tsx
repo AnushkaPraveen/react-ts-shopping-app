@@ -11,7 +11,7 @@ type ComponentProps = {
 const Item: React.FC<ComponentProps> = ({ product }) => {
     const dispatch = useAppDispatch();
     const products = useAppSelector((state) => state.cart.productsCart);
-    console.log(products);
+    //console.log(products);
     
 
     const handleCart = () => {
