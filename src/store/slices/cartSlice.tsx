@@ -23,8 +23,8 @@ const cartSlice = createSlice({
             if (itemIndex >= 0) {
                 state.productsCart[itemIndex].cartQuantity += 1;
             } else {
-                const tempProduct = { ...action.payload, cartQuantity: 1 };
-                state.productsCart.push(tempProduct);
+                //const tempProduct = { ...action.payload, cartQuantity: 1 };
+                state.productsCart.push(action.payload);
             }
 
         },
@@ -33,6 +33,25 @@ const cartSlice = createSlice({
             if (itemIndex !== -1) {
                 state.productsCart.splice(itemIndex, 1);
             }
+        },
+        incrementQuantity: (state, action: PayloadAction<number>) => {
+            const itemIndex = state.productsCart.findIndex(item => item.id === action.payload);
+            console.log(itemIndex);
+            if (itemIndex >= 0) {
+                state.productsCart[itemIndex].cartQuantity += 1;
+            }
+        },
+        decrementQuantity: (state, action: PayloadAction<number>) => {
+            const itemIndex = state.productsCart.findIndex(item => item.id === action.payload);
+            console.log(itemIndex);
+            if (itemIndex >= 0 && state.productsCart[itemIndex].cartQuantity > 1) {
+                state.productsCart[itemIndex].cartQuantity -= 1;
+            }
+        },
+        setQuantity:(state,action)=>{
+            const itemIndex = state.productsCart.findIndex(item => item.id === action.payload);
+            console.log(itemIndex);
+            
         },
         getToatlAmount: (state) => {
             let { total, quantity } = state.productsCart.reduce(
