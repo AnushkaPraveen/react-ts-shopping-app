@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import Counter from "./counter";
+import { useState } from "react";
 import Classes from './ProductDetails.module.css';
 import { ProductType } from "./productTypes";
 import { calculateDiscount } from "../../../functions/index";
@@ -6,17 +8,29 @@ import { useAppSelector, useAppDispatch } from '../../../store/hooks';
 import { cartActions } from '../../../store/slices/cartSlice';
 
 type ComponentProps = {
-    productDetails: ProductType ;
+    productDetails: ProductType;
 }
 
 
 const ProductDetails: React.FC<ComponentProps> = ({ productDetails }) => {
+    const [countValue, setCountValue] = useState<number>(1);
     const dispatch = useAppDispatch();
     const discountPrice = calculateDiscount(productDetails?.price, productDetails?.discountPercentage);
 
     const handleCart = () => {
-        dispatch(cartActions.addItemToCart(productDetails));
+        const tempProductDetails = { ...productDetails, cartQuantity: countValue };
+        dispatch(cartActions.addItemToCart(tempProductDetails));
     }
+
+    const handleIncreaseQuantitiy = (newCount: number) => {
+        setCountValue(newCount);
+        //dispatch(cartActions.incrementQuantity(cartItem.id));
+    };
+    const handleDecreaseQuantitiy = (newCount: number) => {
+        setCountValue(newCount);
+        //dispatch(cartActions.decrementQuantity(cartItem.id));
+    };
+
 
 
     return (
@@ -33,13 +47,14 @@ const ProductDetails: React.FC<ComponentProps> = ({ productDetails }) => {
                     <h6 className={Classes.productPrePrice}>${productDetails?.price}</h6>
                 </div>
                 <div className="d-flex align-items-center">
-                    <button className={`${Classes.updownbtn}`}>-</button>
+                    <Counter count={countValue} increaseQuantity={handleIncreaseQuantitiy} decreaseQuantity={handleDecreaseQuantitiy} />
+                    {/* <button className={`${Classes.updownbtn}`}>-</button>
                     <span className={Classes.displayCount}>1</span>
-                    <button className={`${Classes.updownbtn} me-5`}>+</button>
+                    <button className={`${Classes.updownbtn} me-5`}>+</button> */}
                     <Link to='/cart'>
-                    <button className={`${Classes.buyNowbtn} btn me-4`} onClick={handleCart}>Buy Now</button>
+                        <button className={`${Classes.buyNowbtn} btn me-4`} onClick={handleCart}>Buy Now</button>
                     </Link>
-                    
+
                     <button className={`${Classes.addCartbtn} btn`} onClick={handleCart}>Add to Cart</button>
                 </div>
             </div>
