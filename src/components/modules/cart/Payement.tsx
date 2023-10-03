@@ -1,7 +1,11 @@
 import Classes from './Payment.module.css';
 import CommonClasses from '../../../util/common.module.css';
+import { useAppSelector, useAppDispatch } from '../../../store/hooks';
 
 const Payment = () => {
+    const subTotal = useAppSelector((state) => state.cart.cartTotalAmount);
+    const salesTax = useAppSelector((state) => state.cart.totalTaxAmount);
+    const totalAmount=subTotal-salesTax;
     return (
         <div className={Classes.paymentContainer}>
             <p className='d-flex justify-content-center h5'>Pay with Card</p>
@@ -37,7 +41,7 @@ const Payment = () => {
                     </div>
                     <input type="text" className="form-control mb-3" placeholder="Remarks" />
                 </div>
-                <button className={`${CommonClasses.buttonColor} btn`}>Pay $133.32</button>
+                <button className={`${CommonClasses.buttonColor} btn`}>Pay ${totalAmount}</button>
             </div>
         </div>
     )
