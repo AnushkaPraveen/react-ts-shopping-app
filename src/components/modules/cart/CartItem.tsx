@@ -1,5 +1,9 @@
+import { useState } from "react";
 import classes from './CartItem.module.css';
 import { ProductType } from "../product/productTypes";
+import Counter from '../product/counter';
+import { useAppSelector, useAppDispatch } from '../../../store/hooks';
+import { cartActions } from '../../../store/slices/cartSlice';
 
 type ComponentProps = {
     cartItem: ProductType;
@@ -7,7 +11,21 @@ type ComponentProps = {
 }
 
 const CartItem: React.FC<ComponentProps> = ({ cartItem,removeItemFromCart }) => {
+    const [countValue, setCountValue] = useState<number>(cartItem.cartQuantity);
+    const dispatch = useAppDispatch();
     const priceOfItems = cartItem.price * cartItem.cartQuantity;
+
+    // Callback function to update countValue
+    const handleIncreaseQuantitiy = (newCount:number) => {
+        setCountValue(newCount);
+        dispatch(cartActions.incrementQuantity(cartItem.id));
+    };
+    const handleDecreaseQuantitiy = (newCount:number) => {
+        setCountValue(newCount);
+        dispatch(cartActions.decrementQuantity(cartItem.id));
+    };
+
+
     return (
         <div className='row my-2'>
             <div className='col d-flex justify-content-end align-items-center'>
@@ -18,16 +36,8 @@ const CartItem: React.FC<ComponentProps> = ({ cartItem,removeItemFromCart }) => 
                     <div className='col'>
                         <p className='mb-0'>{cartItem.title}</p>
                         <div className='d-flex align-items-center'>
-                            <p>qty</p>
-                            <select className="form-select form-select-sm ms-2">
-                                <option selected value={cartItem.cartQuantity}>{cartItem.cartQuantity}</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                            </select>
+                            <p className='me-2'>qty</p>
+                            <Counter count={countValue} increaseQuantity={handleIncreaseQuantitiy} decreaseQuantity={handleDecreaseQuantitiy}/>
                             <i className=" ms-4 bi bi-trash" onClick={()=>removeItemFromCart(cartItem.id)}></i>
                         </div>
                     </div>
