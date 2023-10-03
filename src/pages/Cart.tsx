@@ -18,7 +18,7 @@ const Cart = () => {
     useEffect(() => {
         dispatch(cartActions.getToatlAmount());
         dispatch(cartActions.getTotalTax());
-    }, []);
+    }, [cartProducts]);
 
     const handleCheckout = () => {
         dispatch(cartActions.checkoutCart(true));
