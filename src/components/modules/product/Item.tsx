@@ -12,10 +12,11 @@ const Item: React.FC<ComponentProps> = ({ product }) => {
     const dispatch = useAppDispatch();
     const products = useAppSelector((state) => state.cart.productsCart);
     //console.log(products);
-    
+
 
     const handleCart = () => {
-        dispatch(cartActions.addItemToCart(product));
+        const tempProductDetails = { ...product, cartQuantity: 1 };
+        dispatch(cartActions.addItemToCart(tempProductDetails));
     }
 
     return (
