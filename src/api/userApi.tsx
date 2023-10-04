@@ -1,21 +1,6 @@
-
 import axios, { AxiosResponse } from 'axios';
+import { UserDetails,UserResponse } from './responseTypes';
 
-type UserResponse = {
-    id: number;
-    username: string;
-    email: string;
-    firstName: string;
-    lastName: string;
-    gender: string;
-    image: string;
-    token: string;
-}
-
-type UserDetails={
-    username:string;
-    password:string;
-}
 
 const instance = axios.create({
     baseURL: 'https://dummyjson.com',
@@ -31,6 +16,6 @@ const requests = {
     delete: (url: string) => instance.delete(url).then(responseBody),
 };
 
-export const Cart = {
+export const User = {
     loginUser: (userDetails: UserDetails): Promise<UserResponse> => requests.post('auth/login', userDetails),
 };
