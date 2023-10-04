@@ -13,11 +13,8 @@ export const fetchProductCategory = () => {
             dispatch(productActions.setCategories(productCategoryData));
         } catch (error) {
             console.log(error);
-
         }
-
     }
-
 }
 
 export const fetchProducts = () => {
@@ -28,11 +25,8 @@ export const fetchProducts = () => {
             dispatch(productActions.setProducts(productsData));
         } catch (error) {
             console.log(error);
-
         }
-
     }
-
 }
 
 
@@ -44,11 +38,8 @@ export const fetchProductsByCategory = (category:string) => {
             dispatch(productActions.setProducts(productsData));
         } catch (error) {
             console.log(error);
-
         }
-
     }
-
 }
 
 
@@ -60,9 +51,6 @@ export const fetchSearchProduct = (searchTerm:string) => {
             dispatch(productActions.setProducts(productsData));
         } catch (error) {
             console.log(error);
-
         }
-
     }
-
 }
