@@ -1,36 +1,23 @@
-import axios from 'axios';
 
-type PostType = {
-    userId?: number;
-    id?: number;
-    title: string;
-    body: string;
-  }
+import axios, { AxiosResponse } from 'axios';
+//import { ProductType } from '../components/modules/product/productTypes';
+import { CartData,CartResponse } from './responseTypes';
 
-type GetUsersResponse = {
-    data: PostType[];
+
+const instance = axios.create({
+    baseURL: 'https://dummyjson.com/carts',
+    timeout: 15000,
+});
+
+const responseBody = (response: AxiosResponse) => response.data;
+
+const requests = {
+    get: (url: string) => instance.get(url).then(responseBody),
+    post: (url: string, body: {}) => instance.post(url, body).then(responseBody),
+    put: (url: string, body: {}) => instance.put(url, body).then(responseBody),
+    delete: (url: string) => instance.delete(url).then(responseBody),
 };
 
-export const getUsers = async () => {
-    try {
-        // 👇️ const data: GetUsersResponse
-        const { data, status } = await axios.get<GetUsersResponse>('http://jsonplaceholder.typicode.com/posts');
-
-        console.log(JSON.stringify(data, null, 4));
-
-        // 👇️ "response status is: 200"
-        console.log('response status is: ', status);
-
-        return data;
-    } catch (error) {
-        if (axios.isAxiosError(error)) {
-            console.log('error message: ', error.message);
-            return error.message;
-        } else {
-            console.log('unexpected error: ', error);
-            return 'An unexpected error occurred';
-        }
-    }
-}
-
-
+export const Cart = {
+    createCart: (items: CartData): Promise<CartResponse> => requests.post('add', items),
+};
