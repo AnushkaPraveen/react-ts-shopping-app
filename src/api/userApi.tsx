@@ -1,11 +1,9 @@
-
 import axios, { AxiosResponse } from 'axios';
-//import { ProductType } from '../components/modules/product/productTypes';
-import { CartData,CartResponse } from './responseTypes';
+import { UserDetails,UserResponse } from './responseTypes';
 
 
 const instance = axios.create({
-    baseURL: 'https://dummyjson.com/carts',
+    baseURL: 'https://dummyjson.com',
     timeout: 15000,
 });
 
@@ -18,6 +16,6 @@ const requests = {
     delete: (url: string) => instance.delete(url).then(responseBody),
 };
 
-export const Cart = {
-    createCart: (items: CartData): Promise<CartResponse> => requests.post('add', items),
+export const User = {
+    loginUser: (userDetails: UserDetails): Promise<UserResponse> => requests.post('auth/login', userDetails),
 };

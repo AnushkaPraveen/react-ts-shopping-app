@@ -7,6 +7,7 @@ import { fetchSearchProduct } from '../store/actions/productAction';
 
 const Header: React.FC = () => {
     const dispatch = useAppDispatch();
+    const cartProducts = useAppSelector((state) => state.cart.productsCart);
     const [searchText, setSearchText] = useState<string>('');
 
     const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
@@ -46,7 +47,7 @@ const Header: React.FC = () => {
                     <Link to="/cart">
                         <button type="button" className="btn btn-light me-4">
                             <i className="bi bi-cart me-2 fs-5"></i>
-                            Cart <span className={`${classes.buttonColor} badge ms-2`}>4</span>
+                            Cart <span className={`${classes.buttonColor} badge ms-2`}>{cartProducts.length}</span>
                         </button>
                     </Link>
                     <Link to="/login">
