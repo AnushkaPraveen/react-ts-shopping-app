@@ -16,11 +16,11 @@ const Home = () => {
 
     const handleApi = async () => {
         dispatch(commonActions.setLoader(true));
-        await dispatch(fetchProducts());
+        await dispatch<any>(fetchProducts());
         dispatch(commonActions.setLoader(false));
     }
     const handleFetchProductCategory = async () => {
-        await dispatch(fetchProductCategory());
+        await dispatch<any>(fetchProductCategory());
     }
 
     const handleScroll = () => {
