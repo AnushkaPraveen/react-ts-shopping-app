@@ -18,4 +18,5 @@ const requests = {
 
 export const User = {
     loginUser: (userDetails: UserDetails): Promise<UserResponse> => requests.post('auth/login', userDetails),
+    getUserDetails:(userId:number):Promise<any>=>requests.get(`users/${userId}`)
 };

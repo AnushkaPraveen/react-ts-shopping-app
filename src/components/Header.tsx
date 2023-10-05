@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom';
 import classes from './Header.module.css';
 import Dropdown from './modules/common/Dropdown';
 import { fetchSearchProduct } from '../store/actions/productAction';
+import LoggedUser from './modules/user/LoggedUser';
 
 const Header: React.FC = () => {
     const dispatch = useAppDispatch();
     const cartProducts = useAppSelector((state) => state.cart.productsCart);
+    const isLogged = useAppSelector((state) => state.common.isLogging)
     const [searchText, setSearchText] = useState<string>('');
 
     const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
@@ -16,7 +18,7 @@ const Header: React.FC = () => {
     }
 
     const handleSearchProduct = async () => {
-        await dispatch(fetchSearchProduct(searchText));
+        await dispatch<any>(fetchSearchProduct(searchText));
     }
 
     return (
@@ -50,11 +52,12 @@ const Header: React.FC = () => {
                             Cart <span className={`${classes.buttonColor} badge ms-2`}>{cartProducts.length}</span>
                         </button>
                     </Link>
-                    <Link to="/login">
+                    {isLogged ? <LoggedUser /> : <Link to="/login">
                         <button type="button" className="btn btn-light">
                             <i className="bi bi-person fs-5"></i>
                         </button>
-                    </Link>
+                    </Link>}
+
 
                 </div>
             </nav>

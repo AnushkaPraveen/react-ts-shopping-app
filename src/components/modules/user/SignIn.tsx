@@ -1,34 +1,71 @@
+import { useState } from 'react';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 import classes from '../../../util/common.module.css';
 import { loginUser } from '../../../store/actions/userAction';
 import { useAppSelector, useAppDispatch } from '../../../store/hooks';
 
 const SignIn = () => {
     const dispatch = useAppDispatch();
-     type UserDetails = {
+    const [signing, setSigning] = useState<boolean>(false);
+
+    type UserDetails = {
         username: string;
         password: string;
     }
-    const handleLogin = async () => {
-        const userDetails:UserDetails = {
-            username: "kminchelle",
-            password: "0lelplR"
+
+    const initialValues = {
+        username: '',
+        password: '',
+    };
+
+    const handleLogin = async (values: any) => {
+        setSigning(true);
+        const userDetails: UserDetails = {
+            username: values.username,
+            password: values.password
         }
-        //dispatch(loginUser(userDetails));
+        await dispatch<any>(loginUser(userDetails));
+        setSigning(false)
     }
+
+    const validationSchema = Yup.object().shape({
+        username: Yup.string()
+            .required('username is required'),
+        password: Yup.string()
+            .min(8, 'Password must be at least 8 characters')
+            .required('Password is required'),
+    });
+
     return (
         <>
             <div className="d-flex justifiy-content-center">
                 <div className="card w-100 p-5 shadow-lg mb-5 bg-white rounded mt-5">
                     <p className="text-center h2">Sign In</p>
-                    <input type="email" className="form-control mb-3" id="exampleFormControlInput1" placeholder="Email" />
-                    <input type="password" id="inputPassword5" className="form-control mb-3" aria-describedby="passwordHelpBlock" placeholder="Password" />
-                    <div className="form-check mb-3">
-                        <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                        <label className="form-check-label">
-                            Remember Me
-                        </label>
-                    </div>
-                    <button className={`${classes.buttonColor} btn`} onClick={handleLogin}>Sign In</button>
+                    <Formik
+                        initialValues={initialValues}
+                        validationSchema={validationSchema}
+                        onSubmit={handleLogin}
+                    >
+                        <Form>
+                            <Field type="text" className="form-control mb-3" id="username" name="username" placeholder="username" />
+                            <ErrorMessage name="username" component="div" className="text-danger" />
+                            <Field type="password" id="password" name="password" className="form-control mb-3" aria-describedby="passwordHelpBlock" placeholder="Password" />
+                            <ErrorMessage name="password" component="div" className="text-danger" />
+                            <div className="form-check mb-3">
+                                <Field className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                                <label className="form-check-label">
+                                    Remember Me
+                                </label>
+                            </div>
+                            <div className='d-flex justify-content-center'>
+                                {signing ? <button className={`${classes.buttonColor} btn`} type="button" disabled>
+                                    <span className="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                                    <span role="status">Signing...</span>
+                                </button> : <button className={`${classes.buttonColor} btn`} type="submit">Sign In</button>}
+                            </div>
+                        </Form>
+                    </Formik>
                 </div>
             </div>
         </>

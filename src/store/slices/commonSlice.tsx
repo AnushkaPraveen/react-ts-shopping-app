@@ -2,12 +2,14 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 //import { ProductApiResponse } from '../../api/responseTypes';
 
 type CommonState = {
-    
-    loadingState:boolean;
+
+    loadingState: boolean;
+    isLogging: boolean
 }
 
 const initialState: CommonState = {
-    loadingState:false,
+    loadingState: false,
+    isLogging: true
 };
 
 const commonSlice = createSlice({
@@ -17,7 +19,10 @@ const commonSlice = createSlice({
         setLoader: (state, action: PayloadAction<boolean>) => {
             state.loadingState = action.payload;
         },
-        
+        setLogingUser: (state, action: PayloadAction<boolean>) => {
+            state.isLogging = action.payload;
+        }
+
     }
 
 });
