@@ -56,4 +56,8 @@ export type UserDetails = {
 
 export type UserState = {
     user: UserResponse | null;
+    userProfile:any
 }
+
+
+
