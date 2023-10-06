@@ -1,16 +1,20 @@
 import { useState, ChangeEvent } from 'react';
 import { useAppSelector, useAppDispatch } from '../store/hooks';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import classes from './Header.module.css';
 import Dropdown from './modules/common/Dropdown';
 import { fetchSearchProduct } from '../store/actions/productAction';
 import LoggedUser from './modules/user/LoggedUser';
 
 const Header: React.FC = () => {
+    const location = useLocation();
+    const { pathname } = location;
     const dispatch = useAppDispatch();
     const cartProducts = useAppSelector((state) => state.cart.productsCart);
-    const isLogged = useAppSelector((state) => state.common.isLogging)
+    const user = JSON.parse(localStorage.getItem('user') as string);
     const [searchText, setSearchText] = useState<string>('');
+    const showSearchRoutes = ['/profile', '/login'];
+    const shouldShowSearch = showSearchRoutes.includes(pathname);
 
     const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
         const inputValue: string = event.target.value;
@@ -34,16 +38,19 @@ const Header: React.FC = () => {
                 </Link>
 
                 <div className='d-flex'>
-                    <div className="dropdown me-2">
-                        <Dropdown />
-                    </div>
-                    <div className="input-group me-2">
-                        <input className="form-control  border-right-0 border" type="search" placeholder="Search" id="example-search-input" onChange={handleInput} />
-                        <span className="input-group-append">
-                            <div className="input-group-text bg-white"><i className="bi-search"></i></div>
-                        </span>
-                    </div>
-                    <button className={`${classes.buttonColor} btn text-white`} type="submit" onClick={handleSearchProduct}>Search</button>
+                    {!shouldShowSearch && (
+                        <>
+                            <div className="dropdown me-2">
+                                <Dropdown />
+                            </div>
+                            <div className="input-group me-2">
+                                <input className="form-control  border-right-0 border" type="search" placeholder="Search" id="example-search-input" onChange={handleInput} />
+                                <span className="input-group-append">
+                                    <div className="input-group-text bg-white"><i className="bi-search"></i></div>
+                                </span>
+                            </div>
+                            <button className={`${classes.buttonColor} btn text-white`} type="submit" onClick={handleSearchProduct}>Search</button>
+                        </>)}
                 </div>
                 <div className='d-flex mt-sm-2 mt-lg-0 mt-md-0'>
                     <Link to="/cart">
@@ -52,7 +59,7 @@ const Header: React.FC = () => {
                             Cart <span className={`${classes.buttonColor} badge ms-2`}>{cartProducts.length}</span>
                         </button>
                     </Link>
-                    {isLogged ? <LoggedUser /> : <Link to="/login">
+                    {user ? <LoggedUser /> : <Link to="/login">
                         <button type="button" className="btn btn-light">
                             <i className="bi bi-person fs-5"></i>
                         </button>
