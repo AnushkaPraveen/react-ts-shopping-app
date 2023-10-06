@@ -1,27 +1,28 @@
 import { User } from "../../api/userApi";
 import { UserDetails, } from "../../api/responseTypes";
 import { userActions } from "../slices/userSlice";
-
+import { commonActions } from "../slices/commonSlice";
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
- export const loginUser = createAsyncThunk(
+export const loginUser = createAsyncThunk(
     'loginUser',
-    async (userDetails:UserDetails,thunkAPI) => {
+    async (userDetails: UserDetails, thunkAPI) => {
         try {
             console.log("inside");
             const userData = await User.loginUser(userDetails);
             console.log(userData);
             thunkAPI.dispatch(userActions.setUser(userData));
+            thunkAPI.dispatch(commonActions.setLogingUser(true));
             localStorage.setItem("user", JSON.stringify(userData));
         } catch (error) {
             console.log(error);
         }
     }
-  ); 
+);
 
-  export const getUserProfile = createAsyncThunk(
+export const getUserProfile = createAsyncThunk(
     'getuser',
-    async (userId:number,thunkAPI) => {
+    async (userId: number, thunkAPI) => {
         try {
             console.log("inside");
             const userData = await User.getUserDetails(userId);
@@ -32,4 +33,4 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
             console.log(error);
         }
     }
-  ); 
+); 
