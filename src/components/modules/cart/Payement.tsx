@@ -12,7 +12,7 @@ const Payment = () => {
     const salesTax = useAppSelector((state) => state.cart.totalTaxAmount);
     const totalAmount = subTotal - salesTax;
 
-    const handleCartPayment = () => {
+    const handleCartPayment = async() => {
         console.log("checked");
 
         const convertedProducts = cartProducts.map((product) => ({
@@ -25,7 +25,7 @@ const Payment = () => {
             products: convertedProducts,
         };
 
-        createProductCart(item);
+        await createProductCart(item);
     }
     const initialValues = {
         cardNumber: '',
