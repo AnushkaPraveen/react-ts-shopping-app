@@ -9,7 +9,7 @@ type CommonState = {
 
 const initialState: CommonState = {
     loadingState: false,
-    isLogging: true
+    isLogging: false
 };
 
 const commonSlice = createSlice({
