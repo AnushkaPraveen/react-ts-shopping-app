@@ -1,13 +1,21 @@
 import { Link } from 'react-router-dom';
+import { toast } from "react-toastify";
 import { commonActions } from '../../../store/slices/commonSlice';
+import { cartActions } from "../../../store/slices/cartSlice";
 import { useAppSelector, useAppDispatch } from '../../../store/hooks';
+
 
 
 const LoggedUser = () => {
     const dispatch = useAppDispatch();
     const user = JSON.parse(localStorage.getItem('user') as string);
+
     const handleLogout = () => {
         dispatch(commonActions.setLogingUser(false))
+        dispatch(cartActions.checkoutCart(false));
+        toast.success("You have been successfully logged out",{position:'top-center',theme: "colored",});
+        localStorage.clear();
+  
     }
 
     return (
