@@ -7,6 +7,7 @@ import Payment from "../components/modules/cart/Payement";
 import Classes from './Cart.module.css';
 import { useAppSelector, useAppDispatch } from '../store/hooks';
 import { cartActions } from "../store/slices/cartSlice";
+import { ProductType } from "../components/modules/product/productTypes";
 
 const Cart = () => {
     const dispatch = useAppDispatch();
@@ -16,40 +17,32 @@ const Cart = () => {
     const cartTotalTaxAmount = useAppSelector((state) => state.cart.totalTaxAmount);
     const checkout = useAppSelector((state) => state.cart.checkOut);
     const user = JSON.parse(localStorage.getItem('user') as string);
-    //console.log("total", cartTotalAmount, "tax", cartTotalTaxAmount);
-
+    //const cartProducts:ProductType[] = JSON.parse(localStorage.getItem('cartItems') as string);
+    //const cartTotalAmount:number = JSON.parse(localStorage.getItem('totalAmount') as string);
+    //const cartTotalTaxAmount:number = JSON.parse(localStorage.getItem('totalTax') as string);
+    console.log(cartProducts);
+    
 
     useEffect(() => {
         dispatch(cartActions.getToatlAmount());
         dispatch(cartActions.getTotalTax());
     }, [cartProducts]);
 
-   /*  useEffect(() => {
-        if (user) {
-            dispatch(cartActions.checkoutCart(false));
-        }
-    }, [user]); */
-
     const handleCheckout = () => {
         if (user) {
             dispatch(cartActions.checkoutCart(true));
             console.log("with user");
-
-
         } else {
             dispatch(cartActions.checkoutCart(false));
             navigate("/login");
             console.log("without user");
-
         }
-
     }
 
     const removeItem = (itemId: number) => {
         dispatch(cartActions.removeItemFromCart(itemId))
         toast.success("Product removed from cart", { position: 'top-center', theme: "colored", });
     }
-    //console.log(cartProducts);
 
     return (
         <>
