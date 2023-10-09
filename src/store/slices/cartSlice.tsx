@@ -26,13 +26,14 @@ const cartSlice = createSlice({
                 //const tempProduct = { ...action.payload, cartQuantity: 1 };
                 state.productsCart.push(action.payload);
             }
-
+            localStorage.setItem("cartItems", JSON.stringify(state.productsCart));
         },
         removeItemFromCart: (state, action: PayloadAction<number>) => {
             const itemIndex = state.productsCart.findIndex(item => item.id === action.payload);
             if (itemIndex !== -1) {
                 state.productsCart.splice(itemIndex, 1);
             }
+            localStorage.setItem("cartItems", JSON.stringify(state.productsCart));
         },
         incrementQuantity: (state, action: PayloadAction<number>) => {
             const itemIndex = state.productsCart.findIndex(item => item.id === action.payload);
@@ -40,6 +41,9 @@ const cartSlice = createSlice({
             if (itemIndex >= 0) {
                 state.productsCart[itemIndex].cartQuantity += 1;
             }
+            localStorage.setItem("cartItems", JSON.stringify(state.productsCart));
+            //console.log(state.productsCart);
+            
         },
         decrementQuantity: (state, action: PayloadAction<number>) => {
             const itemIndex = state.productsCart.findIndex(item => item.id === action.payload);
@@ -47,6 +51,7 @@ const cartSlice = createSlice({
             if (itemIndex >= 0 && state.productsCart[itemIndex].cartQuantity > 1) {
                 state.productsCart[itemIndex].cartQuantity -= 1;
             }
+            localStorage.setItem("cartItems", JSON.stringify(state.productsCart));
         },
         setQuantity:(state,action)=>{
             const itemIndex = state.productsCart.findIndex(item => item.id === action.payload);
@@ -72,18 +77,21 @@ const cartSlice = createSlice({
             total = parseFloat(total.toFixed(2));
             //state.cartTotalQuantity = quantity;
             state.cartTotalAmount = total;
+            localStorage.setItem("totalAmount", JSON.stringify(state.cartTotalAmount));
         },
         getTotalTax: (state) => {
             const tax = (state.cartTotalAmount * 6.5) / 100;
             state.totalTaxAmount = parseFloat(tax.toFixed(2));
+            localStorage.setItem("totalTax", JSON.stringify(state.totalTaxAmount));
         },
         checkoutCart: (state, action) => {
             state.checkOut = action.payload;
         },
-        clearCart: (state, action) => {
+        clearCart: (state) => {
             state.productsCart = [];
             state.cartTotalAmount = 0;
             state.totalTaxAmount = 0;
+            localStorage.removeItem("cartItems");
         }
     }
 

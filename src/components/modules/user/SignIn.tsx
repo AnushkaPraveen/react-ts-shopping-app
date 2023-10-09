@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Navigate} from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import classes from '../../../util/common.module.css';
@@ -8,6 +9,7 @@ import { useAppSelector, useAppDispatch } from '../../../store/hooks';
 const SignIn = () => {
     const dispatch = useAppDispatch();
     const [signing, setSigning] = useState<boolean>(false);
+    const isLogged = useAppSelector((state) => state.common.isLogging)
 
     type UserDetails = {
         username: string;
@@ -37,6 +39,10 @@ const SignIn = () => {
             .required('Password is required'),
     });
 
+    if (isLogged) {
+        // Redirect the user to the home page once they are logged in
+        return <Navigate to="/" />;
+      }
     return (
         <>
             <div className="d-flex justifiy-content-center">

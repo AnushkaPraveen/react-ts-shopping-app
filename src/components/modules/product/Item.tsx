@@ -3,6 +3,7 @@ import { useAppSelector, useAppDispatch } from '../../../store/hooks';
 import classes from './Item.module.css';
 import { ProductType } from "./productTypes";
 import { cartActions } from '../../../store/slices/cartSlice';
+import { toast } from "react-toastify";
 
 type ComponentProps = {
     product: ProductType;
@@ -17,6 +18,7 @@ const Item: React.FC<ComponentProps> = ({ product }) => {
     const handleCart = () => {
         const tempProductDetails = { ...product, cartQuantity: 1 };
         dispatch(cartActions.addItemToCart(tempProductDetails));
+        toast.success("Product has been added to the cart",{position:'top-center',theme: "colored",autoClose:1000});
     }
 
     return (
