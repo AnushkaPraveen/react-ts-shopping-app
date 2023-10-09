@@ -41,7 +41,7 @@ const Cart = () => {
 
     const removeItem = (itemId: number) => {
         dispatch(cartActions.removeItemFromCart(itemId))
-        toast.success("Product removed from cart", { position: 'top-center', theme: "colored", });
+        toast.success("Product removed from cart", { position: 'top-center', theme: "colored", autoClose: 2000 });
     }
 
     return (
