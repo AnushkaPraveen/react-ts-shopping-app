@@ -1,5 +1,6 @@
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { useNavigate } from 'react-router-dom';
 import Classes from './Payment.module.css';
 import CommonClasses from '../../../util/common.module.css';
 import { useAppSelector, useAppDispatch } from '../../../store/hooks';
@@ -7,12 +8,13 @@ import { createProductCart } from '../../../store/actions/cartAction';
 import { ProductType } from '../product/productTypes';
 
 const Payment = () => {
+    const navigate = useNavigate();
     const cartProducts = useAppSelector((state) => state.cart.productsCart);
     const subTotal = useAppSelector((state) => state.cart.cartTotalAmount);
     const salesTax = useAppSelector((state) => state.cart.totalTaxAmount);
     const totalAmount = subTotal - salesTax;
 
-    const handleCartPayment = async() => {
+    const handleCartPayment = async () => {
         console.log("checked");
 
         const convertedProducts = cartProducts.map((product) => ({
@@ -26,6 +28,7 @@ const Payment = () => {
         };
 
         await createProductCart(item);
+        navigate("/");
     }
     const initialValues = {
         cardNumber: '',
@@ -48,11 +51,11 @@ const Payment = () => {
             .matches(/^\d{3,4}$/, 'Invalid CVC. Please enter a valid digit CVC'),
         nameOnCard: Yup.string().required('Name on card is required'),
         useCurrentAddress: Yup.boolean(),
-       /*  deliveryAddress: Yup.string().when('useCurrentAddress', {
-            is: (useCurrentAddress: boolean) => !useCurrentAddress,
-            then: Yup.string().required('Delivery address is required'),
-            otherwise: Yup.string()
-        }), */
+        /*  deliveryAddress: Yup.string().when('useCurrentAddress', {
+             is: (useCurrentAddress: boolean) => !useCurrentAddress,
+             then: Yup.string().required('Delivery address is required'),
+             otherwise: Yup.string()
+         }), */
         remarks: Yup.string(),
 
     });
